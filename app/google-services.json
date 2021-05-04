@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1075311882895",
+    "project_id": "rid-project-cb50d",
+    "storage_bucket": "rid-project-cb50d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1075311882895:android:4e685d7e8320be633ef6fa",
+        "android_client_info": {
+          "package_name": "com.example.rid_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1075311882895-73q9g5di8t9dlrud6bgpmg5u0j5it1d1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rid_project",
+            "certificate_hash": "c5406ba6457594cfba2309f3e26b7de8c2d0f97d"
+          }
+        },
+        {
+          "client_id": "1075311882895-ghfkd6430dqpn331jimntnb8innlll19.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCq4al4oTCh37tz95n-C9kUw5wrWpe5eyk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1075311882895-ghfkd6430dqpn331jimntnb8innlll19.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
