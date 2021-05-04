@@ -1,5 +1,6 @@
 *.iml
 .gradle
+build/
 /local.properties
 /.idea/caches
 /.idea/libraries
@@ -13,3 +14,13 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+### Firebase ###
+.idea
+**/node_modules/*
+**/.firebaserc
+
+# Package Files #
+*.war
+*.ear
+*.jar
