@@ -33,8 +33,8 @@ public class MainAddBookFragment extends Fragment {
 
         binding = FragmentMainAddBookBinding.inflate(inflater, container, false);
 
-        btnComplete = binding.btnComplete;
-        etTitle = binding.etTitle;
+        btnComplete = binding.btnMainComplete;
+        etTitle = binding.editTextMainBookTitle;
         bookName = etTitle.getText().toString();
 
         btnComplete.setOnClickListener((new View.OnClickListener() {
