@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">RID-Project</string>
+
     <!-- TODO: Remove or change this placeholder text -->
+
+    <string name="재촬영">재촬영</string>
+    <string name="저장">저장</string>
 </resources>
