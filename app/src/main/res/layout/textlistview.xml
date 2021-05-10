@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <shape>
+        <solid android:color="@android:color/darker_gray"/>
+        <corners android:radius="4dp"/>
+    </shape>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="337dp"
+        android:layout_height="245dp"
+        android:background="#C6C2C2"
+        tools:layout_editor_absoluteX="37dp"
+        tools:layout_editor_absoluteY="161dp" />
+
+    <ScrollView
+        android:layout_width="14dp"
+        android:layout_height="243dp"
+        tools:layout_editor_absoluteX="360dp"
+        tools:layout_editor_absoluteY="161dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="49dp"
+        android:layout_height="51dp"
+        app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24"
+        tools:layout_editor_absoluteX="27dp"
+        tools:layout_editor_absoluteY="35dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="283dp"
+        android:layout_height="43dp"
+        android:text="나의 라임 오렌지나무"
+        android:textColor="@color/black"
+        android:textSize="30dp"
+        tools:layout_editor_absoluteX="77dp"
+        tools:layout_editor_absoluteY="42dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="75dp"
+        android:layout_height="26dp"
+        android:text="n개의 메모"
+        tools:layout_editor_absoluteX="299dp"
+        tools:layout_editor_absoluteY="135dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
