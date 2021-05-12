@@ -1,4 +1,4 @@
-package com.example.rid_project;
+package com.example.rid_project.ui.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.example.rid_project.R;
 
 public class BottomNavigationFragment extends Fragment {
     @Nullable
