@@ -1,6 +1,5 @@
-package com.example.rid_project.fragment;
+package com.example.rid_project.ui.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.rid_project.MainActivity;
 import com.example.rid_project.databinding.FragmentMainAddBookBinding;
 
 
