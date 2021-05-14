@@ -1,16 +1,14 @@
 package com.example.rid_project.ui.fragment;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import com.example.rid_project.databinding.FragmentMainAddBookBinding;
 
 
@@ -44,10 +42,8 @@ public class MainAddBookFragment extends Fragment {
                 // startActivity(intent); // 액티비티 이동
             }
         }));
-
         return binding.getRoot();
     }
-
 
     @Override
     public void onDestroyView(){
