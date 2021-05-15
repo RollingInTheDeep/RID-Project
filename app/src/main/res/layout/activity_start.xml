@@ -6,10 +6,11 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="424dp"
-        android:layout_height="755dp"
-        app:srcCompat="@drawable/startview"
-        tools:layout_editor_absoluteX="-7dp"
-        tools:layout_editor_absoluteY="-17dp" />
+        android:id="@+id/imageview_start_homeImage"
+        android:layout_width="435dp"
+        android:layout_height="854dp"
+        app:srcCompat="@drawable/ic_baseline_home_24"
+        tools:layout_editor_absoluteX="-8dp"
+        tools:layout_editor_absoluteY="-34dp"
+        tools:ignore="MissingConstraints,VectorDrawableCompat" />
 </androidx.constraintlayout.widget.ConstraintLayout>
