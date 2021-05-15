@@ -11,11 +11,12 @@ import android.os.Bundle;
 
 
 
-public class startView extends AppCompatActivity {
+public class StartActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.startview);
+        setContentView(R.layout.start_activity);
     }
     @Override
     public void onBackPressed() {

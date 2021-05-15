@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/i_startview"
         android:layout_width="424dp"
         android:layout_height="755dp"
         app:srcCompat="@drawable/startview"

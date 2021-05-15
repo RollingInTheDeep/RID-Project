@@ -5,22 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="39dp"
-        android:layout_height="43dp"
-        app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp" />
-
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/fragment_book_message"
         android:layout_width="299dp"
         android:layout_height="452dp"
         android:text="나에게는 하나의 목적지가 있다. 유일한 목적지...언제쯤 도착할 수 있을까"
         android:textColor="@color/black"
         android:textSize="25dp"
         tools:layout_editor_absoluteX="56dp"
-        tools:layout_editor_absoluteY="97dp" />
+        tools:layout_editor_absoluteY="97dp"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
