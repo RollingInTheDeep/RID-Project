@@ -6,29 +6,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <shape>
-        <solid android:color="@android:color/darker_gray"/>
-        <corners android:radius="4dp"/>
+    <shape android:id="@+id/shape">
+
+        <solid android:color="@android:color/darker_gray" />
+
+        <corners android:radius="4dp" />
     </shape>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="337dp"
         android:layout_height="245dp"
         android:background="#C6C2C2"
         tools:layout_editor_absoluteX="37dp"
         tools:layout_editor_absoluteY="161dp" />
-
-    <ScrollView
-        android:layout_width="14dp"
-        android:layout_height="243dp"
-        tools:layout_editor_absoluteX="360dp"
-        tools:layout_editor_absoluteY="161dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
 
     <ImageView
         android:id="@+id/imageView2"

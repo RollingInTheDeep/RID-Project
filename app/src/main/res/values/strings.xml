@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">RID-Project</string>
+<<<<<<< HEAD
 
+=======
+>>>>>>> conflict 해결
     <!-- TODO: Remove or change this placeholder text -->
 
     <string name="재촬영">재촬영</string>
