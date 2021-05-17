@@ -7,7 +7,7 @@
     android:background="#FFFFFF">
 
     <LinearLayout
-        android:id="@+id/linearyLayout_main_framentContainer"
+        android:id="@+id/linearLayout_main_fragmentContainer"
         android:layout_width="349dp"
         android:layout_height="552dp"
         android:layout_marginTop="16dp"

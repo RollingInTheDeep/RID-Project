@@ -24,7 +24,7 @@
         app:layout_constraintVertical_bias="0.648" />
 
     <TextView
-        android:id="@+id/activity_book_title"
+        android:id="@+id/textView_book_title"
         android:layout_width="283dp"
         android:layout_height="43dp"
         android:text="나의 라임 오렌지나무"
@@ -35,7 +35,7 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/activity_book_count"
+        android:id="@+id/textview_book_count"
         android:layout_width="75dp"
         android:layout_height="26dp"
         android:text="n개의 메모"

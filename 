@@ -1,0 +1,39 @@
+pick 423ebac bug fix
+pick [#21] gradle 버전 오류 수정
+423ebac (origin/camera/#7) bug fix
+514cd48 [#3] 컨벤선에 맞게 파일명 등 수정
+95e0603 [#3] markup - startview.PNG -> startView.xml
+4216b48 [#3] markup - textlistview.xml <-> textListView.java
+f93bc89 [#3] markup - startview.xml <-> StartView.java
+1120dd8 [#3] markup - add innertextview.xml <-> InnerTextView.java
+6b7b7b2 [#3] markup - add read.xml<->readView.java
+fa786ac [#10] login Api - SignInActivity
+e1c1065 [#7] feat, setting - HomewView의 recyclerview에 adapter구현 및 package
+구조 세팅
+0d1a520 [#1] markup - login acti bcd12d8 [#21] gradle 버전 오류 수정
+
+# Rebase 514cd48..bcd12d8 onto 514cd48 (2 commands)
+#
+# Commands:
+# p, pick <commit> = use commit
+# r, reword <commit> = use commit, but edit the commit message
+# e, edit <commit> = use commit, but stop for amending
+# s, squash <commit> = use commit, but meld into previous commit
+# f, fixup <commit> = like "squash", but discard this commit's log message
+# x, exec <command> = run command (the rest of the line) using shell
+# d, drop <commit> = remove commit
+# l, label <label> = label current HEAD with a name
+# t, reset <label> = reset HEAD to a label
+# m, merge [-C <commit> | -c <commit>] <label> [# <oneline>]
+# .       create a merge commit using the original merge commit's
+# .       message (or the oneline, if no original merge commit was
+# .       specified). Use -c <commit> to reword the commit message.
+#
+# These lines can be re-ordered; they are executed from top to bottom.
+#
+# If you remove a line here THAT COMMIT WILL BE LOST.
+#
+#	However, if you remove everything, the rebase will be aborted.
+#
+#	
+# Note that empty commits are commented out

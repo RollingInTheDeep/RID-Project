@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/fragment_book_message"
+        android:id="@+id/textview_book_message"
         android:layout_width="299dp"
         android:layout_height="452dp"
         android:text="나에게는 하나의 목적지가 있다. 유일한 목적지...언제쯤 도착할 수 있을까"

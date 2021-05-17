@@ -13,7 +13,7 @@
         android:layout_marginRight="4dp"
         android:text="저장"
         android:textSize="30dp"
-        android:id="@+id/fragment_book_savebutton"
+        android:id="@+id/btn_book_save"
         app:backgroundTint="#919AEC"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -26,14 +26,14 @@
         android:layout_marginLeft="4dp"
         android:text="재촬영"
         android:textSize="30dp"
-        android:id="@+id/fragment_book_retakebutton"
+        android:id="@+id/btn_book_retake"
         app:backgroundTint="#BEBAEF"
         app:cornerRadius="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/fragment_book_message"
+        android:id="@+id/textview_book_message"
         android:layout_width="335dp"
         android:layout_height="437dp"
         android:text="나에게는 하나의 목적지가 있다. 유일한 목적지...언제쯤 도착할 수 있을까"
@@ -44,7 +44,7 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/fragment_book_topbar"
+        android:id="@+id/textview_book_topbar"
         android:layout_width="455dp"
         android:layout_height="70dp"
         android:background="#BEBAEF"
