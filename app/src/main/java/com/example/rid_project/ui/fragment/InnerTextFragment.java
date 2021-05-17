@@ -10,6 +10,6 @@ public class InnerTextFragment extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_inner_text);
+        setContentView(R.layout.inner_text_fragment);
     }
 }
