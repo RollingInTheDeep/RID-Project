@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/fragment_start_homeImage"
+        android:id="@+id/Imageview_start_homeImage"
         android:layout_width="435dp"
         android:layout_height="854dp"
         app:srcCompat="@drawable/ic_baseline_home_24"
