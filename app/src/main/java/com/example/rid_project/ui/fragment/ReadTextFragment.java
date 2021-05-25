@@ -7,19 +7,24 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.example.rid_project.R;
+import com.example.rid_project.databinding.FragmentReadTextBinding;
 
 public class ReadTextFragment extends Fragment {
+
+    private FragmentReadTextBinding binding;
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        binding  = FragmentReadTextBinding.inflate(inflater, container, false);
 
-        View view = inflater.inflate(R.layout.fragment_read_text, container, false); //container <-부모 사이즈를 주고 , false=아직 붙이지 않는다.
 
-        return view;
+
+
+        return binding.getRoot();
 
     }
 }
