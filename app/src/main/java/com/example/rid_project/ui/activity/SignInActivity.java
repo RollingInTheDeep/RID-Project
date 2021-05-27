@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.rid_project.R;
 import com.example.rid_project.databinding.ActivitySigninBinding;
+import com.example.rid_project.viemodel.MainViewModel;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -31,6 +32,7 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
 
     private ActivitySigninBinding binding;
     private SignInButton btnSignIn;
+    private MainViewModel mainViewModel;
     private FirebaseAuth auth;  //  파이버 베이스 인증 객체
     private GoogleApiClient googleApiClient;  //  구글 API 클라이언트 객체
     private static final int RED_SIGN_GOOGLE = 100;  //  구글 로그인 결과 코드
@@ -45,7 +47,7 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
         setContentView(view);
 
         btnSignIn = binding.btnMainSignIn;  //  로그인 버튼
-
+        // mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);  //  뷰모델 초기화 과정
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -85,6 +87,8 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
                             Toast.makeText(SignInActivity.this,"로그인 성공", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             String idToken = task.getResult().getUser().getUid();
+                            //User user = new User(idToken, account.getGivenName()); // 사용자 정보를 담고 있는 User 객체
+                            //mainViewModel.setUser(user);
                             intent.putExtra("userName", account.getGivenName());
                             intent.putExtra("userID", idToken);
                             startActivity(intent);

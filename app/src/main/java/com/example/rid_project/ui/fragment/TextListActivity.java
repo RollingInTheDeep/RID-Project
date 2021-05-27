@@ -1,4 +1,4 @@
-package com.example.rid_project.fragment;
+package com.example.rid_project.ui.fragment;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
