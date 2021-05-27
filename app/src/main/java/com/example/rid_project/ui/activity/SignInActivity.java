@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.rid_project.R;
 import com.example.rid_project.databinding.ActivitySigninBinding;
-import com.example.rid_project.viemodel.MainViewModel;
+import com.example.rid_project.viewModel.MainViewModel;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;

@@ -4,9 +4,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
+            name="viewModel"
+            type="com.example.rid_project.viewModel.MainViewModel" />
+
+        <variable
             name="User"
             type="com.example.rid_project.data.User" />
     </data>
+
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -30,6 +35,7 @@
             android:id="@+id/textView_main_topBar"
             android:layout_width="match_parent"
             android:layout_height="34dp"
+            android:text="@{User.userName}"
             android:background="#DEB887"
             android:fontFamily="@font/lotte_mart_dream_bold"
             android:gravity="center"

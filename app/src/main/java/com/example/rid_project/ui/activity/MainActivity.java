@@ -15,7 +15,7 @@ import com.example.rid_project.data.User;
 import com.example.rid_project.databinding.ActivityMainBinding;
 import com.example.rid_project.ui.fragment.BottomNavigationFragment;
 import com.example.rid_project.ui.fragment.MainFragment;
-import com.example.rid_project.viemodel.MainViewModel;
+import com.example.rid_project.viewModel.MainViewModel;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 
