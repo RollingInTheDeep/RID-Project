@@ -1,17 +1,15 @@
 package com.example.rid_project.ui.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,9 +19,7 @@ import com.example.rid_project.adapter.MainAdapter;
 import com.example.rid_project.data.MainData;
 import com.example.rid_project.data.User;
 import com.example.rid_project.databinding.FragmentMainBinding;
-import com.example.rid_project.viemodel.MainViewModel;
-
-import org.jetbrains.annotations.NotNull;
+import com.example.rid_project.viewModel.MainViewModel;
 
 import java.util.ArrayList;
 
@@ -36,13 +32,25 @@ public class MainFragment extends Fragment {
     private RecyclerView recyclerView;
     private GridLayoutManager gridLayoutManager;
     private ImageButton btnAdd;
-    private FragmentMainBinding binding;
-    private TextView userNameTextView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_main, container, false);
-        binding = FragmentMainBinding.inflate(inflater, container, false);
+
+
+        FragmentMainBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main,container,false);
+        View view = binding.getRoot();
+
+        mainViewModel = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
+        binding.setViewModel(mainViewModel);
+        binding.setLifecycleOwner(this);
+
+        mainViewModel.getLiveData().observe(getViewLifecycleOwner(), new Observer<User>() {
+            @Override
+            public void onChanged(User user) {
+                Log.d("ss",user.getUserName());
+                binding.setUser(user);
+            }
+        });
 
         recyclerView = binding.recyclerViewMainBookContainer;
         gridLayoutManager = new GridLayoutManager(getActivity(), 2);
@@ -52,16 +60,6 @@ public class MainFragment extends Fragment {
 
         recyclerView.setAdapter(mainAdapter);
         btnAdd = binding.imageButtonMainPlus;
-        userNameTextView = binding.textViewMainTopBar;
-
-        mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-
-        mainViewModel.getLiveData().observe(getViewLifecycleOwner(), new Observer<User>() {
-            @Override
-            public void onChanged(User user) {
-                userNameTextView.setText(user.getUserName() + "의 책장");
-            }
-        });
 
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -75,10 +73,4 @@ public class MainFragment extends Fragment {
         return view;
     }
 
-    @Override
-    public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        mainViewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
-        userNameTextView.setText(mainViewModel.getLiveData().getValue().getUserName() + "의 책장");
-    }
 }
