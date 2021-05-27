@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="User"
+            type="com.example.rid_project.data.User" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF">
@@ -27,7 +33,6 @@
             android:background="#DEB887"
             android:fontFamily="@font/lotte_mart_dream_bold"
             android:gravity="center"
-            android:text="얏호님의 책장"
             android:textAlignment="center" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -103,3 +108,5 @@
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
