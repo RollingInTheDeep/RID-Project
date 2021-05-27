@@ -9,14 +9,15 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.rid_project.data.MainData;
 import com.example.rid_project.R;
+import com.example.rid_project.data.MainData;
 
 import java.util.ArrayList;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CustomViewHolder>{
 
     private ArrayList<MainData> arrayList;
+
 
     public MainAdapter(ArrayList<MainData> arrayList) {
         this.arrayList = arrayList;
