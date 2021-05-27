@@ -1,4 +1,4 @@
-package com.example.rid_project.viemodel;
+package com.example.rid_project.viewModel;
 
 import android.app.Application;
 
@@ -23,20 +23,19 @@ public class MainViewModel extends AndroidViewModel {
         this.userData = user.getValue();
     }
 
-    public void setUser(User user){
-        fireStore.setUser(user);
+    public void setLiveData(User user){
+        // livedata 설정
+        this.user.setValue(user);
+        // main view model 변수 값 설정
+        this.userData = user;
+        // firestore user 전달
+        this.fireStore.setUser(userData);
     }
 
     //data binding시 필요
     public LiveData<User> getLiveData()
     {
         return user;
-    }
-
-    public void setLiveData(User user){
-        this.user.setValue(user);
-        this.userData = user;
-        setUser(userData);
     }
 
 }
