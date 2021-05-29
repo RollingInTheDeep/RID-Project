@@ -1,4 +1,4 @@
-package com.example.rid_project.ui.activity;
+package com.example.rid_project.repository;
 
 import android.content.Context;
 import android.media.MediaScannerConnection;
@@ -8,20 +8,20 @@ import android.text.TextUtils;
 /**
  * 이미지 저장 후 미디어 스캐닝을 수행해줄 때 사용하는 유틸 클래스
  */
-public class MediaScannerActivity {
+public class MediaScanner {
     private                 Context                                             mContext;
-    private static volatile MediaScannerActivity                                        mMediaInstance = null;
+    private static volatile MediaScanner                                        mMediaInstance = null;
     private                 MediaScannerConnection                              mMediaScanner;
     //private                 MediaScannerConnection.MediaScannerConnectionClient mMediaScannerClient;
 
     private String mFilePath;
 
-    public static MediaScannerActivity getInstance( Context context ) {
+    public static MediaScanner getInstance( Context context ) {
         if( null == context )
             return null;
 
         if( null == mMediaInstance )
-            mMediaInstance = new MediaScannerActivity ( context );
+            mMediaInstance = new MediaScanner( context );
         return mMediaInstance;
     }
 
@@ -32,7 +32,7 @@ public class MediaScannerActivity {
     }
 
 
-    private MediaScannerActivity(Context context) {
+    private MediaScanner(Context context) {
         mContext = context;
 
         mFilePath = "";
@@ -65,4 +65,3 @@ public class MediaScannerActivity {
         //mMediaScanner.scanFile( path,null );
     }
 }
-
