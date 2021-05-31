@@ -49,6 +49,7 @@ public class MainFragment extends Fragment {
             public void onChanged(User user) {
                 Log.d("ss",user.getUserName());
                 binding.setUser(user);
+                // user uid 뽑아서 intent로 넘겨주기
             }
         });
 
