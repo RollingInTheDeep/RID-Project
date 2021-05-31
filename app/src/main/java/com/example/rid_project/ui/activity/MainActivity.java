@@ -3,6 +3,7 @@ package com.example.rid_project.ui.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -55,10 +56,7 @@ public class MainActivity extends AppCompatActivity {
         transaction.replace(R.id.frame_main_navigationbar, fragmentBottom).commit();
 
 
-        fragmentView = binding.fragmentMainView;  // 책장 프래그먼트
-
-
-
+        fragmentView = binding.frameMainView;  // 책장 프래그먼트
     }
 
 }

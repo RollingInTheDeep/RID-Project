@@ -2,7 +2,7 @@
 <paths xmlns:android="http://schemas.android.com/apk/res/android">
 
     <external-path
-        name="camera"
-        path="Android/data/com.example.rid_project/files/Pictures"/>  <!--  Environment.getExternalStorageDirectory() 외부 저장소-->
-
+        name="storage/emulated/0"
+        path="."/>
+        <!--  Environment.getExternalStorageDirectory() 외부 저장소-->
 </paths>
