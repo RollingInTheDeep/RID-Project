@@ -7,17 +7,16 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.rid_project.R;
 
-public class ReadTextFragment extends Fragment {
+public class ReadTextActivity extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_read_text, container, false); //container <-부모 사이즈를 주고 , false=아직 붙이지 않는다.
+        View view = inflater.inflate(R.layout.activity_read_text, container, false); //container <-부모 사이즈를 주고 , false=아직 붙이지 않는다.
 
         return view;
 
