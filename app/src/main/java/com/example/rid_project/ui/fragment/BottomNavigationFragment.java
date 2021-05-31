@@ -1,7 +1,10 @@
 package com.example.rid_project.ui.fragment;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,10 +17,13 @@ import com.example.rid_project.databinding.FragmentBottomnavigationBinding;
 import com.example.rid_project.ui.activity.CameraActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.io.File;
+
 public class BottomNavigationFragment extends Fragment {
 
     private FragmentBottomnavigationBinding binding;
     public BottomNavigationView bottomNavigationView;
+    File file;
 
     @Nullable
     @Override
@@ -29,6 +35,11 @@ public class BottomNavigationFragment extends Fragment {
                     switch (item.getItemId()) {
                         case R.id.cameraItem_navigation:
                             getActivity().startActivity(new Intent(getActivity(), CameraActivity.class));
+
+
+
+
+
 
                             Log.e("dd","d");
                             return true;
