@@ -24,7 +24,6 @@ public class FireStore {
 
     public void setUser(User user){
         this.userUid = user.getUserId();
-
         // document에 존재하면 set 안 하고, 존재하지 않으면 set 하는 걸로 if 조건문 넣는게 좋을 것 같다.
         firestore.collection("Users").document(userUid).set(user);
         setData(userUid);
