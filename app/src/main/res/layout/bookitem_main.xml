@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.rid_project.viewModel.MainViewModel" />
+
+        <variable
+            name="MainData"
+            type="com.example.rid_project.data.MainData" />
+    </data>
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -20,7 +31,7 @@
             android:layout_marginVertical="30dp"
             android:fontFamily="@font/kopubworld_dotum_bold"
             android:gravity="center"
-            android:text="책 이름"
+            android:text="@{MainData.tvBookName"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textFontWeight="3"
@@ -28,5 +39,5 @@
 
     </LinearLayout>
 
-
 </LinearLayout>
+    </layout>
