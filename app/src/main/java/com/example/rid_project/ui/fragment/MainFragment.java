@@ -5,8 +5,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -16,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.rid_project.R;
 import com.example.rid_project.adapter.MainAdapter;
+import com.example.rid_project.data.Book;
 import com.example.rid_project.data.MainData;
 import com.example.rid_project.data.User;
 import com.example.rid_project.databinding.FragmentMainBinding;
@@ -32,6 +36,7 @@ public class MainFragment extends Fragment {
     private RecyclerView recyclerView;
     private GridLayoutManager gridLayoutManager;
     private ImageButton btnAdd;
+    private LinearLayout linear;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -48,6 +53,7 @@ public class MainFragment extends Fragment {
             @Override
             public void onChanged(User user) {
                 binding.setUser(user);
+
             }
         });
 
@@ -64,12 +70,33 @@ public class MainFragment extends Fragment {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainData mainData = new MainData("그만해");
+                linear = (LinearLayout)View.inflate(getContext(), R.layout.fragment_main_add_book, null);
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setView(linear);
+
+                builder.setPositiveButton("저장", (dialog, which) -> {
+                    EditText descripton = (EditText) linear.findViewById(R.id.editText_main_bookTitle);
+                    String s = descripton.getText().toString();
+                    Book book = new Book(s);
+                    mainViewModel.setBookData(book);
+                    // db에 저장하기
+                    dialog.dismiss();
+                });
+
+                builder.setNegativeButton("취소", (dialog, which) -> {
+                    dialog.dismiss();
+                });
+                builder.show();
+               /** MainData mainData = new MainData("그만해");
                 arrayList.add(mainData);
-                mainAdapter.notifyDataSetChanged();
+                mainAdapter.notifyDataSetChanged();**/
             }
         });
         return view;
+    }
+
+    private void makeBook(){
+
     }
 
 }

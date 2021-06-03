@@ -5,7 +5,9 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.rid_project.data.Book;
 import com.example.rid_project.data.User;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -16,6 +18,7 @@ public class FireStore {
     private static final String TAG = "dataBase";
     FirebaseFirestore firestore;
     private MutableLiveData<User> user = new MutableLiveData<>();
+    private MutableLiveData<Book> book = new MutableLiveData<>();
     String userUid = "";
 
     public FireStore(){
@@ -24,16 +27,24 @@ public class FireStore {
 
     public void setUser(User user){
         this.userUid = user.getUserId();
-
         if(this.userUid != null){
             firestore.collection("Users").document(userUid).set(user);
             setData(userUid);
         }else{
             setData(null);
         }
+
+    }
+    public void setBookName(Book book){
+        firestore.collection("Users").document(userUid).collection(book.bookName);
     }
 
     public MutableLiveData<User> findAll(){return user;}
+
+    private void setBookData(){
+        CollectionReference colRef = firestore.collection("Users").document(this.userUid).collection("bpbb");
+    }
+
 
 
     private void setData(String userUid){

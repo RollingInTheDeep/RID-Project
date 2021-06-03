@@ -2,7 +2,6 @@ package com.example.rid_project.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -45,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         User user = new User(userID, userName); // 사용자 정보를 담고 있는 User 객체
 
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);  //  뷰모델 초기화 과정
+
         mainViewModel.setLiveData(user);  //  뷰모델로 저장
 
 

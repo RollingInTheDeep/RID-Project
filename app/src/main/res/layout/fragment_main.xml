@@ -35,7 +35,7 @@
             android:id="@+id/textView_main_topBar"
             android:layout_width="match_parent"
             android:layout_height="34dp"
-            android:text="@{User.userName}"
+            android:text='@{User.userName + "의 책장"}'
             android:background="#DEB887"
             android:fontFamily="@font/lotte_mart_dream_bold"
             android:gravity="center"
