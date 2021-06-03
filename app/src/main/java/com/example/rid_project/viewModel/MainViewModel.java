@@ -14,6 +14,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class MainViewModel extends AndroidViewModel {
     private MutableLiveData<User> user;
+    private MutableLiveData<String> text;
     private User userData;
     private FireStore fireStore = new FireStore();
 
@@ -21,6 +22,7 @@ public class MainViewModel extends AndroidViewModel {
         super(application);
         this.user = fireStore.findAll();
         this.userData = user.getValue();
+
     }
 
     public void setLiveData(User user){
