@@ -29,7 +29,7 @@
         <activity android:name=".ui.activity.SignInActivity" />
         <activity android:name=".ui.activity.MainActivity" />
         <activity android:name=".ui.activity.ReadTextActivity" />
-        <activity android:name=".ui.activity.CameraActivity"/>
+        <activity android:name=".ui.activity.SelectTextActivity"/>
 
     </application>
 

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.SelectTextActivity">
+
+
+    <TextView
+        android:layout_width="418dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center"
+        android:background="#BEBAEF"
+        android:gravity="center"
+        android:text="원하는 문장을 선택하세요"
+        android:textAlignment="center"
+        android:textSize="25dp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <CheckBox
+        android:id="@+id/cb1"
+        android:layout_width="290dp"
+        android:layout_height="79dp"
+        android:text="내 가슴 속 새장이 텅 빈 것 같아"
+        app:layout_constraintBottom_toTopOf="@+id/cb2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.815" />
+
+    <CheckBox
+        android:id="@+id/cb2"
+        android:layout_width="292dp"
+        android:layout_height="71dp"
+        android:text="난 아무것도 바라지 않아"
+        app:layout_constraintBottom_toTopOf="@+id/cb3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.9" />
+
+    <CheckBox
+        android:id="@+id/cb3"
+        android:layout_width="292dp"
+        android:layout_height="74dp"
+        android:text="그래야 기분 상하는 일도 없으니까.."
+        app:layout_constraintBottom_toTopOf="@+id/cb4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.921" />
+
+    <CheckBox
+        android:id="@+id/cb4"
+        android:layout_width="291dp"
+        android:layout_height="79dp"
+        android:text="저는 너무 일찍 철이 들었던 것 같습니다"
+        app:layout_constraintBottom_toTopOf="@+id/btn_next"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.811" />
+
+    <Button
+        android:id="@+id/btn_next"
+        android:layout_width="245dp"
+        android:layout_height="53dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginRight="80dp"
+        android:background="#BEBAEF"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:text="다음"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.884" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

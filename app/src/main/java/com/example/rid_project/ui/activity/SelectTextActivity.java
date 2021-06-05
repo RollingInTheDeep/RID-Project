@@ -15,9 +15,14 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
 
 
 import com.example.rid_project.R;
+import com.example.rid_project.databinding.ActivityReadTextBinding;
+import com.example.rid_project.databinding.ActivitySelectTextBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -27,17 +32,38 @@ import com.google.firebase.storage.UploadTask;
 import java.io.ByteArrayOutputStream;
 import java.util.Random;
 
-public class CameraActivity extends AppCompatActivity {
+public class SelectTextActivity extends AppCompatActivity {
 
     private String userUid = "";
     private int cnt;
     private Random random = new Random();
     FirebaseStorage storage = FirebaseStorage.getInstance();
+    private Button btnNext;
+    private ActivitySelectTextBinding binding;
+    private CheckBox cb1;
+    private CheckBox cb2;
+    private CheckBox cb3;
+    private CheckBox cb4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_camera);
+        binding = ActivitySelectTextBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
+
+        cb1 = binding.cb1;
+        cb2 = binding.cb2;
+        cb3 = binding.cb1;
+        cb4 = binding.cb4;
+
+
+        btnNext = binding.btnNext;
+        btnNext.setOnClickListener(view1 -> {
+            Intent intent = new Intent(SelectTextActivity.this,ReadTextActivity.class);
+            startActivity(intent);
+            finish();
+        });
 
         Intent getIntent = new Intent(this.getIntent());
         userUid = getIntent.getStringExtra("userUid");
@@ -75,7 +101,7 @@ public class CameraActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                                 Log.e("success", "upload success");
-                                transition();
+
                             }
                         });
 
@@ -83,17 +109,5 @@ public class CameraActivity extends AppCompatActivity {
                     }
                 }
             });
-
-    private void transition(){
-        Intent intent = new Intent(CameraActivity.this, ReadTextActivity.class);
-        Log.e("camera","read text activity로 넘어가기 전");
-        startActivity(intent);
-        finish();
-    }
-
-    @Override
-    protected void onDestroy(){
-        super.onDestroy();
-    }
 
 }
