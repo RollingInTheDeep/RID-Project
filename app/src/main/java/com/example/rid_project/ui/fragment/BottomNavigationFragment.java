@@ -17,7 +17,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.rid_project.R;
 import com.example.rid_project.data.User;
 import com.example.rid_project.databinding.FragmentBottomnavigationBinding;
-import com.example.rid_project.ui.activity.ReadTextActivity;
+import com.example.rid_project.ui.activity.CameraActivity;
 import com.example.rid_project.viewModel.MainViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -49,7 +49,7 @@ public class BottomNavigationFragment extends Fragment {
                 item -> {
                     switch (item.getItemId()) {
                         case R.id.cameraItem_navigation:
-                            Intent intent = new Intent(getActivity(), ReadTextActivity.class);
+                            Intent intent = new Intent(getActivity(), CameraActivity.class);
                             intent.putExtra("userUid", userUid);
                             getActivity().startActivity(intent);
                             return true;

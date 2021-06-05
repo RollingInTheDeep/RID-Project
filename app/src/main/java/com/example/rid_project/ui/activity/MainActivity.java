@@ -2,6 +2,7 @@ package com.example.rid_project.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -59,4 +60,9 @@ public class MainActivity extends AppCompatActivity {
         fragmentView = binding.frameMainView;  // 책장 프래그먼트
     }
 
+    @Override
+    protected void onResume(){
+        super.onResume();
+        Log.e("onResume","main");
+    }
 }

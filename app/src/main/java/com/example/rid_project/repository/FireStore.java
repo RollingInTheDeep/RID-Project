@@ -24,32 +24,38 @@ public class FireStore {
 
     public void setUser(User user){
         this.userUid = user.getUserId();
-        // document에 존재하면 set 안 하고, 존재하지 않으면 set 하는 걸로 if 조건문 넣는게 좋을 것 같다.
-        firestore.collection("Users").document(userUid).set(user);
-        setData(userUid);
+        if(this.userUid != null){
+            firestore.collection("Users").document(userUid).set(user);
+            setData(userUid);
+        }else{
+            setData(null);
+        }
     }
 
     public MutableLiveData<User> findAll(){return user;}
 
 
     private void setData(String userUid){
-        DocumentReference docRef = firestore.collection("Users").document(userUid);
+        if(userUid != null){
+            DocumentReference docRef = firestore.collection("Users").document(userUid);
 
-        docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable @org.jetbrains.annotations.Nullable DocumentSnapshot value, @Nullable @org.jetbrains.annotations.Nullable FirebaseFirestoreException error) {
-                if (error != null) {
-                    System.err.println("Listen failed: " + error);
-                    return;
-                }
+            docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                @Override
+                public void onEvent(@Nullable @org.jetbrains.annotations.Nullable DocumentSnapshot value, @Nullable @org.jetbrains.annotations.Nullable FirebaseFirestoreException error) {
+                    if (error != null) {
+                        System.err.println("Listen failed: " + error);
+                        return;
+                    }
 
-                if (value != null && value.exists()) {
-                    Log.d(TAG, "Current data: " + value.getData());
-                    user.setValue(value.toObject(User.class));
-                } else {
-                    Log.d(TAG, "Current data: null");
+                    if (value != null && value.exists()) {
+                        Log.d(TAG, "Current data: " + value.getData());
+                        user.setValue(value.toObject(User.class));
+                    } else {
+                        Log.d(TAG, "Current data: null");
+                    }
                 }
-            }
-        });
+            });
+        }
+
     }
 }
