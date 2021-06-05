@@ -59,10 +59,4 @@ public class MainActivity extends AppCompatActivity {
 
         fragmentView = binding.frameMainView;  // 책장 프래그먼트
     }
-
-    @Override
-    protected void onResume(){
-        super.onResume();
-        Log.e("onResume","main");
-    }
 }

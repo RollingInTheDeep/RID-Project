@@ -2,14 +2,12 @@ package com.example.rid_project.ui.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
-import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -17,7 +15,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.rid_project.R;
 import com.example.rid_project.data.User;
 import com.example.rid_project.databinding.FragmentBottomnavigationBinding;
-import com.example.rid_project.ui.activity.CameraActivity;
+import com.example.rid_project.ui.activity.SelectTextActivity;
 import com.example.rid_project.viewModel.MainViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -49,7 +47,7 @@ public class BottomNavigationFragment extends Fragment {
                 item -> {
                     switch (item.getItemId()) {
                         case R.id.cameraItem_navigation:
-                            Intent intent = new Intent(getActivity(), CameraActivity.class);
+                            Intent intent = new Intent(getActivity(), SelectTextActivity.class);
                             intent.putExtra("userUid", userUid);
                             getActivity().startActivity(intent);
                             return true;

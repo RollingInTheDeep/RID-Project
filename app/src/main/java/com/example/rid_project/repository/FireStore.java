@@ -24,6 +24,7 @@ public class FireStore {
 
     public void setUser(User user){
         this.userUid = user.getUserId();
+
         if(this.userUid != null){
             firestore.collection("Users").document(userUid).set(user);
             setData(userUid);
