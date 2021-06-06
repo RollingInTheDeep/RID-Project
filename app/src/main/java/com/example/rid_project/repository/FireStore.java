@@ -13,6 +13,10 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.SetOptions;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class FireStore {
     private static final String TAG = "dataBase";
@@ -36,13 +40,16 @@ public class FireStore {
 
     }
     public void setBookName(Book book){
-        firestore.collection("Users").document(userUid).collection(book.bookName);
+        Map<String, Object> update = new HashMap<>();
+        update.put(book.bookName, book);
+        firestore.collection("Users").document(userUid).set(update, SetOptions.merge());
     }
 
     public MutableLiveData<User> findAll(){return user;}
+    public MutableLiveData<Book> find(){return book;}
 
     private void setBookData(){
-        CollectionReference colRef = firestore.collection("Users").document(this.userUid).collection("bpbb");
+        CollectionReference colRef = firestore.collection("Users").document(this.userUid).collection(book.getValue().bookName);
     }
 
 
@@ -50,24 +57,23 @@ public class FireStore {
     private void setData(String userUid){
         if(userUid != null){
             DocumentReference docRef = firestore.collection("Users").document(userUid);
-
             docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
                 @Override
                 public void onEvent(@Nullable @org.jetbrains.annotations.Nullable DocumentSnapshot value, @Nullable @org.jetbrains.annotations.Nullable FirebaseFirestoreException error) {
-                    if (error != null) {
-                        System.err.println("Listen failed: " + error);
-                        return;
-                    }
 
-                    if (value != null && value.exists()) {
-                        Log.d(TAG, "Current data: " + value.getData());
+
+                if (value != null && value.exists()) {
+                    Log.d(TAG, "Current data: " + value.getData());
+                    if(value.getClass().getName().equals("User")) {
                         user.setValue(value.toObject(User.class));
-                    } else {
-                        Log.d(TAG, "Current data: null");
                     }
-                }
-            });
-        }
+                } else {
+                    Log.d(TAG, "Current data: null");
 
-    }
+                }
+            }
+        });
+
+    };
+}
 }

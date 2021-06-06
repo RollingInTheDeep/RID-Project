@@ -24,6 +24,7 @@ public class MainViewModel extends AndroidViewModel {
         super(application);
         this.user = fireStore.findAll();
         this.userData = user.getValue();
+        this.book = fireStore.find();
     }
 
     public void setLiveData(User user){
