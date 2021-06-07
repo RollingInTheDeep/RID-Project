@@ -64,13 +64,13 @@ public class SelectTextActivity extends AppCompatActivity {
 
         cb1 = binding.cb1;
         cb2 = binding.cb2;
-        cb3 = binding.cb1;
+        cb3 = binding.cb3;
         cb4 = binding.cb4;
-
 
         btnNext = binding.btnNext;
         btnNext.setOnClickListener(view1 -> {
             Intent intent = new Intent(SelectTextActivity.this,ReadTextActivity.class);
+            intent.putExtra("check",Checked(view1));
             startActivity(intent);
             finish();
         });
@@ -80,8 +80,25 @@ public class SelectTextActivity extends AppCompatActivity {
 
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE).addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         startActivityResult.launch(intent);
-
     }
+
+    public String Checked(View v) {
+        String resultText = ""; // 체크되었을 때 값을 저장할 스트링 값
+        if (cb1.isChecked()) {
+            resultText += cb1.getText()+".";
+        }
+        if (cb2.isChecked()) {
+            resultText += cb2.getText()+".";
+        }
+        if (cb3.isChecked()) {
+            resultText += cb3.getText()+".";
+        }
+        if (cb4.isChecked()) {
+            resultText += cb4.getText()+".";
+        }
+        return resultText;
+    }
+
 
     ActivityResultLauncher<Intent> startActivityResult = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),

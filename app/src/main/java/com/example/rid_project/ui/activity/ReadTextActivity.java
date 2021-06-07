@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.rid_project.databinding.ActivityReadTextBinding;
 
@@ -22,8 +23,11 @@ public class ReadTextActivity extends AppCompatActivity {
 
         binding = ActivityReadTextBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
-
         setContentView(view);
+
+        Intent intent1 = getIntent();
+        EditText editText = binding.etText;
+        editText.setText(intent1.getStringExtra("check"));
 
         btnBookSave = binding.btnBookSave;
         btnBookSave.setOnClickListener(view1 -> {
