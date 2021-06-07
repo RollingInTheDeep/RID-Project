@@ -36,10 +36,9 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <EditText
-        android:id="@+id/tv_text"
+        android:id="@+id/et_text"
         android:layout_width="335dp"
         android:layout_height="437dp"
-        android:text="내 가슴 속 새장이 텅 빈 것 같아. 난 아무것도 바라지 않아. 그래야 기분 상하는 일도 없으니까..."
         android:textColor="@color/black"
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
