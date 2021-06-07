@@ -21,22 +21,15 @@ import android.widget.Button;
 import android.widget.CheckBox;
 
 
-import com.example.rid_project.R;
-import com.example.rid_project.databinding.ActivityReadTextBinding;
 import com.example.rid_project.databinding.ActivitySelectTextBinding;
 import com.google.android.gms.tasks.Continuation;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.functions.FirebaseFunctions;
 import com.google.firebase.functions.FirebaseFunctionsException;
 import com.google.firebase.functions.HttpsCallableResult;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -96,53 +89,57 @@ public class SelectTextActivity extends AppCompatActivity {
                 @Override
                 public void onActivityResult(ActivityResult result) {
                     if (result.getResultCode() == Activity.RESULT_OK) {
-                        cnt = random.nextInt(1000);
-                        StorageReference storageRef = storage.getReference(userUid.substring(0, 2) + Integer.toString(cnt));
 
+                        // cloud storage에 올린 코드
+//                        cnt = random.nextInt(1000);
+//                        StorageReference storageRef = storage.getReference(userUid.substring(0, 2) + Integer.toString(cnt));
+
+
+                        // 아래 4줄만 보면 됨 -> 카메라로 촬영한 이미지는 bitmap 형태로 제공
                         BitmapFactory.Options options = new BitmapFactory.Options();
                         options.inSampleSize = 4;
+
                         Bundle extras = result.getData().getExtras();
                         Bitmap bitmap = (Bitmap) extras.get("data");
-                        bitmap = scaleBitmapDown(bitmap, 640);
 
-                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                        byte[] data = baos.toByteArray();
-                        String base64encoded = Base64.encodeToString(data, Base64.NO_WRAP);
 
-                        mFunctions = FirebaseFunctions.getInstance();
 
-                        // Create json request to cloud vision
-                        JsonObject request = new JsonObject();
-                        // Add image to request
-                        JsonObject image = new JsonObject();
-                        image.add("content", new JsonPrimitive(base64encoded));
-                        request.add("image", image);
-                        //Add features to the request
-                        JsonObject feature = new JsonObject();
-                        feature.add("type", new JsonPrimitive("TEXT_DETECTION"));
 
-                        annotateImage(request.toString())
-                                .addOnCompleteListener(task -> {
-                                    if (!task.isSuccessful()) {
-                                        Exception e = task.getException();
-                                        if (e instanceof FirebaseFunctionsException) {
-                                            FirebaseFunctionsException ffe = (FirebaseFunctionsException) e;
-                                            FirebaseFunctionsException.Code code = ffe.getCode();
-                                            Object details = ffe.getDetails();
-                                        }
-                                        Log.e("task","fail");
-                                        // Task failed with an exception
-                                        // ...
-                                    } else {
-                                        Log.e("task","success");
-                                        JsonObject annotation = task.getResult().getAsJsonArray().get(0).getAsJsonObject().get("fullTextAnnotation").getAsJsonObject();
-                                        System.out.format("%nComplete annotation:%n");
-                                        System.out.format("%s%n", annotation.get("text").getAsString());
-                                        // Task completed successfully
-                                        // ...
-                                    }
-                                });
+
+                        // 여기서부터 Cloud Function 사용한 코드
+//                        bitmap = scaleBitmapDown(bitmap, 640);
+//                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+//                        byte[] data = baos.toByteArray();
+//                        String base64encoded = Base64.encodeToString(data, Base64.NO_WRAP);
+//
+//                        mFunctions = FirebaseFunctions.getInstance();
+//
+//                        // Create json request to cloud vision
+//                        JsonObject request = new JsonObject();
+//                        // Add image to request
+//                        JsonObject image = new JsonObject();
+//                        image.add("content", new JsonPrimitive(base64encoded));
+//                        request.add("image", image);
+//                        //Add features to the request
+//                        JsonObject feature = new JsonObject();
+//                        feature.add("type", new JsonPrimitive("TEXT_DETECTION"));
+//
+//                        annotateImage(request.toString())
+//                                .addOnCompleteListener(task -> {
+//                                    if (!task.isSuccessful()) {
+//                                        Log.e("task","fail");
+//                                        // Task failed with an exception
+//                                        // ...
+//                                    } else {
+//                                        Log.e("task","success");
+//                                        JsonObject annotation = task.getResult().getAsJsonArray().get(0).getAsJsonObject().get("fullTextAnnotation").getAsJsonObject();
+//                                        System.out.format("%nComplete annotation:%n");
+//                                        System.out.format("%s%n", annotation.get("text").getAsString());
+//                                        // Task completed successfully
+//                                        // ...
+//                                    }
+//                                });
 
 
 
@@ -165,37 +162,37 @@ public class SelectTextActivity extends AppCompatActivity {
                 }
             });
 
-    private Bitmap scaleBitmapDown(Bitmap bitmap, int maxDimension) {
-        int originalWidth = bitmap.getWidth();
-        int originalHeight = bitmap.getHeight();
-        int resizedWidth = maxDimension;
-        int resizedHeight = maxDimension;
-
-        if (originalHeight > originalWidth) {
-            resizedHeight = maxDimension;
-            resizedWidth = (int) (resizedHeight * (float) originalWidth / (float) originalHeight);
-        } else if (originalWidth > originalHeight) {
-            resizedWidth = maxDimension;
-            resizedHeight = (int) (resizedWidth * (float) originalHeight / (float) originalWidth);
-        } else if (originalHeight == originalWidth) {
-            resizedHeight = maxDimension;
-            resizedWidth = maxDimension;
-        }
-        return Bitmap.createScaledBitmap(bitmap, resizedWidth, resizedHeight, false);
-    }
-
-    private Task<JsonElement> annotateImage(String requestJson) {
-        return mFunctions
-                .getHttpsCallable("annotateImage")
-                .call(requestJson)
-                .continueWith(new Continuation<HttpsCallableResult, JsonElement>() {
-                    @Override
-                    public JsonElement then(@NonNull Task<HttpsCallableResult> task) {
-                        // This continuation runs on either success or failure, but if the task
-                        // has failed then getResult() will throw an Exception which will be
-                        // propagated down.
-                        return JsonParser.parseString(new Gson().toJson(task.getResult().getData()));
-                    }
-                });
-    }
+//    private Bitmap scaleBitmapDown(Bitmap bitmap, int maxDimension) {
+//        int originalWidth = bitmap.getWidth();
+//        int originalHeight = bitmap.getHeight();
+//        int resizedWidth = maxDimension;
+//        int resizedHeight = maxDimension;
+//
+//        if (originalHeight > originalWidth) {
+//            resizedHeight = maxDimension;
+//            resizedWidth = (int) (resizedHeight * (float) originalWidth / (float) originalHeight);
+//        } else if (originalWidth > originalHeight) {
+//            resizedWidth = maxDimension;
+//            resizedHeight = (int) (resizedWidth * (float) originalHeight / (float) originalWidth);
+//        } else if (originalHeight == originalWidth) {
+//            resizedHeight = maxDimension;
+//            resizedWidth = maxDimension;
+//        }
+//        return Bitmap.createScaledBitmap(bitmap, resizedWidth, resizedHeight, false);
+//    }
+//
+//    private Task<JsonElement> annotateImage(String requestJson) {
+//        return mFunctions
+//                .getHttpsCallable("annotateImage")
+//                .call(requestJson)
+//                .continueWith(new Continuation<HttpsCallableResult, JsonElement>() {
+//                    @Override
+//                    public JsonElement then(@NonNull Task<HttpsCallableResult> task) {
+//                        // This continuation runs on either success or failure, but if the task
+//                        // has failed then getResult() will throw an Exception which will be
+//                        // propagated down.
+//                        return JsonParser.parseString(new Gson().toJson(task.getResult().getData()));
+//                    }
+//                });
+//    }
 }
