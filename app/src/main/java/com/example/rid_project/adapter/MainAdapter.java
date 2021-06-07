@@ -10,16 +10,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.rid_project.R;
-import com.example.rid_project.data.MainData;
+import com.example.rid_project.data.Book;
 
 import java.util.ArrayList;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CustomViewHolder>{
 
-    private ArrayList<MainData> arrayList;
+    private ArrayList<Book> arrayList;
 
 
-    public MainAdapter(ArrayList<MainData> arrayList) {
+    public MainAdapter(ArrayList<Book> arrayList) {
         this.arrayList = arrayList;
     }
 
@@ -36,7 +36,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CustomViewHold
 
     @Override
     public void onBindViewHolder(@NonNull MainAdapter.CustomViewHolder holder, int position) {
-        holder.tvBookName.setText(arrayList.get(position).getTvBookName());
+        holder.tvBookName.setText(arrayList.get(position).bookName);
 
         holder.itemView.setTag(position);
         holder.itemView.setOnClickListener(new View.OnClickListener(){

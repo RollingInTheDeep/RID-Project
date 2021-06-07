@@ -30,7 +30,7 @@ import java.util.ArrayList;
 
 public class MainFragment extends Fragment {
 
-    private ArrayList<MainData> arrayList;
+    private ArrayList<Book> arrayList;
     private MainAdapter mainAdapter;
     private MainViewModel mainViewModel;
     private RecyclerView recyclerView;
@@ -79,6 +79,8 @@ public class MainFragment extends Fragment {
                     String s = descripton.getText().toString();
                     Book book = new Book(s);
                     mainViewModel.setBookData(book);
+                    arrayList.add(book);
+                    mainAdapter.notifyDataSetChanged();
                     // db에 저장하기
                     dialog.dismiss();
                 });
@@ -87,16 +89,12 @@ public class MainFragment extends Fragment {
                     dialog.dismiss();
                 });
                 builder.show();
-               /** MainData mainData = new MainData("그만해");
-                arrayList.add(mainData);
-                mainAdapter.notifyDataSetChanged();**/
+
             }
         });
         return view;
     }
 
-    private void makeBook(){
 
-    }
 
 }
