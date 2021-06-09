@@ -86,4 +86,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.884" />
 
+        <TextView
+            android:id="@+id/tessResultText"
+            android:layout_width="245dp"
+            android:layout_height="53dp"
+            android:layout_marginEnd="80dp"
+            android:layout_marginRight="80dp"
+            android:textSize="18sp"
+            android:text ="텍스트 인식 결과"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.774"
+            tools:ignore="HardcodedText" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

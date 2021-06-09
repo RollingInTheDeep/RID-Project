@@ -1,41 +1,36 @@
 package com.example.rid_project.ui.activity;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.provider.MediaStore;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-
-import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Bundle;
-import android.provider.MediaStore;
-import android.util.Base64;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.CheckBox;
-
-
+import com.example.rid_project.R;
 import com.example.rid_project.databinding.ActivitySelectTextBinding;
-import com.google.android.gms.tasks.Continuation;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.functions.FirebaseFunctions;
-import com.google.firebase.functions.FirebaseFunctionsException;
-import com.google.firebase.functions.HttpsCallableResult;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.JsonPrimitive;
+import com.googlecode.tesseract.android.TessBaseAPI;
 
-import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Random;
 
 
@@ -53,6 +48,7 @@ public class SelectTextActivity extends AppCompatActivity {
     private CheckBox cb3;
     private CheckBox cb4;
     private FirebaseFunctions mFunctions;
+    TessBaseAPI tessBaseAPI = new TessBaseAPI();
 
 
     @Override
@@ -69,11 +65,17 @@ public class SelectTextActivity extends AppCompatActivity {
 
         btnNext = binding.btnNext;
         btnNext.setOnClickListener(view1 -> {
-            Intent intent = new Intent(SelectTextActivity.this,ReadTextActivity.class);
+            Intent intent = new Intent(SelectTextActivity.this, ReadTextActivity.class);
             intent.putExtra("check",Checked(view1));
             startActivity(intent);
             finish();
         });
+
+        // tesseract 언어 설정
+        String dir = getFilesDir() + "/tesseract";
+        if(checkLanguageFile(dir+"/tessdata"))
+            tessBaseAPI.init(dir, "eng");
+            // tessBaseAPI.init(dir, "kor");
 
         Intent getIntent = new Intent(this.getIntent());
         userUid = getIntent.getStringExtra("userUid");
@@ -99,6 +101,69 @@ public class SelectTextActivity extends AppCompatActivity {
         return resultText;
     }
 
+    // traineddata파일이 해당 경로에 존재하는지 확인
+    private boolean checkLanguageFile(String dir)
+    {
+        File file = new File(dir);
+        if(!file.exists() && file.mkdirs())
+            createFiles(dir);
+        else if(file.exists()){
+            String filePath = dir + "/eng.traineddata";
+            File langDataFile = new File(filePath);
+            if(!langDataFile.exists())
+                createFiles(dir);
+        }
+        return true;
+    }
+
+    private void createFiles(String dir)
+    {
+        AssetManager assetMgr = this.getAssets();
+
+        InputStream inputStream = null;
+        OutputStream outputStream = null;
+
+        try {
+            inputStream = assetMgr.open("eng.traineddata");
+
+            String destFile = dir + "/eng.traineddata";
+
+            outputStream = new FileOutputStream(destFile);
+
+            byte[] buffer = new byte[1024];
+            int read;
+            while ((read = inputStream.read(buffer)) != -1) {
+                outputStream.write(buffer, 0, read);
+            }
+            inputStream.close();
+            outputStream.flush();
+            outputStream.close();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //Tesseract 실행 클래스
+    private class AsyncTess extends AsyncTask<Bitmap, Integer, String> {
+
+        @Override
+        protected String doInBackground(Bitmap... bitmaps) {
+
+            tessBaseAPI.setImage(bitmaps[0]);
+       //     Toast.makeText(SelectTextActivity.this, "doInBackground:"+tessBaseAPI.getUTF8Text(), Toast.LENGTH_LONG).show();
+            System.out.println(tessBaseAPI.getUTF8Text());
+
+            return tessBaseAPI.getUTF8Text();
+        }
+
+        protected void onPostExecute(String result) {
+            TextView tessResultTextView = findViewById(R.id.tessResultText);
+            Toast.makeText(SelectTextActivity.this, ""+result, Toast.LENGTH_LONG).show();
+            tessResultTextView.setText(result);
+            tessBaseAPI.end();
+        }
+    }
+
 
     ActivityResultLauncher<Intent> startActivityResult = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -118,7 +183,7 @@ public class SelectTextActivity extends AppCompatActivity {
 
                         Bundle extras = result.getData().getExtras();
                         Bitmap bitmap = (Bitmap) extras.get("data");
-
+                        new AsyncTess().execute(bitmap);
 
 
 
