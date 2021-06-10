@@ -10,7 +10,7 @@
         android:id="@+id/i_startview"
         android:layout_width="424dp"
         android:layout_height="755dp"
-        app:srcCompat="@drawable/startview"
+        app:srcCompat="@drawable/start"
         tools:layout_editor_absoluteX="-7dp"
         tools:layout_editor_absoluteY="-17dp"
         tools:ignore="MissingConstraints" />

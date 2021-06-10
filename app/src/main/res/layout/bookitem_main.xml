@@ -22,7 +22,7 @@
         android:layout_gravity="center"
         android:layout_marginVertical="20dp"
         android:background="@drawable/main_bookshape_roundver"
-        android:backgroundTint="#039BE5">
+        android:backgroundTint="#FFAB91">
 
         <TextView
             android:id="@+id/textview_main_bookname"
