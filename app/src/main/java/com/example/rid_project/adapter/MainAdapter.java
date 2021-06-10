@@ -1,16 +1,17 @@
 package com.example.rid_project.adapter;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.rid_project.R;
 import com.example.rid_project.data.Book;
+import com.example.rid_project.ui.activity.TextListActivity;
 
 import java.util.ArrayList;
 
@@ -42,8 +43,9 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CustomViewHold
         holder.itemView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                String curName = holder.tvBookName.getText().toString();
-                Toast.makeText(v.getContext(), curName, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(v.getContext(), TextListActivity.class);
+                intent.putExtra("name",arrayList.get(position).bookName.toString());
+                v.getContext().startActivity(intent);
             }
         });
 
